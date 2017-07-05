@@ -1,6 +1,6 @@
 package dft;
 
-
+import javax.annotation.Nonnull;
 
 /**
  * This Class implements a method for calculating the discrete fourier transformation (DFT) of input values.
@@ -21,7 +21,7 @@ public class DFT {
 	 * @param Array of {@linkplain int}
 	 * @return Array of {@linkplain ComplexNumber}
 	 */
-	public ComplexNumber[] calcDFT(int[] input) {
+	public @Nonnull ComplexNumber[] calcDFT(int[] input) {
 		return calcDFT(ComplexNumber.intToComplex(input), false);
 	}
 	/**
@@ -31,8 +31,8 @@ public class DFT {
 	 * @param inverse. Select DFT (False) or Invers-DFT (True)
 	 * @return Array of {@linkplain ComplexNumber}
 	 */
-	@SuppressWarnings("finally")
-	public ComplexNumber[] calcDFT(ComplexNumber[] input, boolean inverse) {
+
+	public @Nonnull ComplexNumber[] calcDFT(ComplexNumber[] input, boolean inverse) {
 		ComplexNumber[] output = new ComplexNumber[input.length];
 		try{
 			int n = input.length;
@@ -60,9 +60,12 @@ public class DFT {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			output = new ComplexNumber[1];
+			output[0] = new ComplexNumber(0,0); 
+			return output;
+			
 		}	
 		finally {
-			return output;
 		}
 	}
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -27,9 +28,11 @@ public class DFTTest {
 		List<Double> myDoubleList = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		System.out.println("Test of DFT Class");
+		String userdir = System.getProperty("user.dir");
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader("C:\\Users\\Andre\\Documents\\MATLAB\\TestFFT_Matlab_Out.txt"));
+			br = new BufferedReader(new FileReader(userdir + File.separator + "src" + File.separator
+					+ "matlab_files" + File.separator + "TestFFT_Matlab_Out.txt"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -60,24 +63,24 @@ public class DFTTest {
 		ComplexNumber[] dftResult = new ComplexNumber[myDoubleList.size()];
 		DFT myDFT = new DFT();
 		dftResult = myDFT.calcDFT(samples, false);
-		//System.out.println(dftResult[0].getReal());
+		// System.out.println(dftResult[0].getReal());
 
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-				new FileOutputStream("C:\\Users\\Andre\\Documents\\MATLAB\\TestFFT_Matlab_in.txt"), "utf-8"))) {
+				new FileOutputStream(userdir + File.separator + "src" + File.separator + "matlab_files"
+						+ File.separator + "TestFFT_Matlab_in.txt"),
+				"utf-8"))) {
 			for (int i = 0; i < myDoubleList.size(); i++) {
 				String myString = "";
-				try{
-				myString = Double.toString(dftResult[i].getReal()) + " "
-						+ Double.toString(dftResult[i].getImag()) + "\n";
-				writer.write(myString);
-				}
-				catch(Exception e){
+				try {
+					myString = Double.toString(dftResult[i].getReal()) + " " + Double.toString(dftResult[i].getImag())
+							+ "\n";
+					writer.write(myString);
+				} catch (Exception e) {
 					e.printStackTrace();
+				} finally {
+
 				}
-				finally {
-					
-				}
-				
+
 			}
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -89,7 +92,6 @@ public class DFTTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		fail("Not yet implemented");
 
 	}
 
