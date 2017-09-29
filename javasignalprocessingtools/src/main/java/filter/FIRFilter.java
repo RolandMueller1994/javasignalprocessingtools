@@ -19,7 +19,7 @@ public class FIRFilter {
 	/**
 	 * Process Filter function with integer input array. 
 	 * @param input {@linkplain int[]}
-	 * @return {@linkplain double[]}
+	 * @return {@linkplain double[]} 
 	 */
 	public double[] process(int[] input) {
 		double[] inDouble = new double[input.length]; 
