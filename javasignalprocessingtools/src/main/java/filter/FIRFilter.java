@@ -7,7 +7,7 @@ package filter;
  */
 
 public class FIRFilter {
-	private double[] coefs; 
+	private double[] coefs;
 	/**
 	 * Creates FIR filter out of coefficients. 
 	 * Order of the filter is equal to the number of coefficients. 
@@ -48,7 +48,7 @@ public class FIRFilter {
 	 * @param in2 {@linkplain double[]}
 	 * @return
 	 */
-	private double[] multArray (double[] in1, double[] in2) {
+	protected double[] multArray (double[] in1, double[] in2) {
 		if (in1.length != in2.length){
 			double[] output = {0};
 			return  output; 
@@ -67,7 +67,7 @@ public class FIRFilter {
 	 * @param inValue {@linkplain double[]}
 	 * @return
 	 */
-	private double[] shiftArray (double[] inArray, double inValue) {
+	protected double[] shiftArray (double[] inArray, double inValue) {
 		double[] output = new double[inArray.length];
 		for(int i = 1; i < inArray.length; i++) {
 			output[i] = inArray[i-1]; 
@@ -82,7 +82,7 @@ public class FIRFilter {
 	 * @param in2 {@linkplain double[]}
 	 * @return
 	 */
-	private double matrixMultArray (double[] in1, double[] in2) {
+	protected double matrixMultArray (double[] in1, double[] in2) {
 		if(in1.length != in2.length) {
 			return 0; 
 		}
