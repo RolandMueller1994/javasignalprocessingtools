@@ -70,8 +70,8 @@ public class FIRFilter {
 	 */
 	protected double[] shiftArray (double[] inArray, double inValue) {
 		double[] output = new double[inArray.length];
-		for(int i = 1; i < inArray.length; i++) {
-			output[i] = inArray[i-1]; 
+		for(int i = inArray.length; i >= 2; i--) {
+			output[i-1] = inArray[i-2]; 
 		}
 		output[0] = inValue; 
 		return output; 
@@ -95,8 +95,14 @@ public class FIRFilter {
 			return output; 
 		}
 	}
-	
-	
+	/**
+	 * Reset of the internal filter state memory.
+	 */
+	public void resetFilterState() {
+		for(int n = 0; n < state.length; n++) {
+			state[n]=0.0;
+		}
+	}
 	
 	
 
