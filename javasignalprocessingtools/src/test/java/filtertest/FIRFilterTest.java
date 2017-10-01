@@ -41,7 +41,8 @@ public class FIRFilterTest {
 		}
 		
 		FIRFilter filter = new FIRFilter(coefs);
-		y = filter.process(y);
+		double[] y_filterd = new double[y.length];
+		y_filterd = filter.process(y);
 		String userdir = System.getProperty("user.dir");
 		try {
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
@@ -51,7 +52,7 @@ public class FIRFilterTest {
 				for (int n = 0; n < x.length; n++) {
 					String myString = "";
 					try {
-						myString = Double.toString(x[n]) + " " + Double.toString(y[n])
+						myString = Double.toString(x[n]) + " " + Double.toString(y[n]) + " " + Double.toString(y_filterd[n])
 								+ "\n";
 						writer.write(myString);
 					} catch (Exception e) {
