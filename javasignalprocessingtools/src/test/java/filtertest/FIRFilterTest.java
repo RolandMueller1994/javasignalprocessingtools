@@ -30,10 +30,10 @@ public class FIRFilterTest {
 		int k = 0; 
 		double fg = 0.2; 
 		for(int n=0; n < coefs.length/2 - 1; n++) {
-			coefs[n] = 40 - n;
+			coefs[n] = (coefs.length-1)/2- n;
 		}
 		for(int n=coefs.length/2; n < coefs.length; n++) {
-			coefs[n] = n - coefs.length/2;
+			coefs[n] = n - ((coefs.length-1)/2);
 		}
 		
 		for(int n = 0; n < coefs.length; n++) {	
