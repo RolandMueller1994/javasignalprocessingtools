@@ -20,7 +20,7 @@ public class FIRFilterTest {
 	public void test() {
 		double[] x = new double[1000];
 		for(int n=0; n < x.length; n++) {
-			x[n] = n/(2*Math.PI); 
+			x[n] = n; 
 		}
 		double[] y = new double[1000];
 		for(int n=0; n< x.length; n++) {
@@ -51,7 +51,7 @@ public class FIRFilterTest {
 				for (int n = 0; n < x.length; n++) {
 					String myString = "";
 					try {
-						myString = Double.toString(x[n]) + " " + Double.toString(x[n])
+						myString = Double.toString(x[n]) + " " + Double.toString(y[n])
 								+ "\n";
 						writer.write(myString);
 					} catch (Exception e) {
