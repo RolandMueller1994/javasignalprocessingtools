@@ -8,6 +8,7 @@ package filter;
 
 public class FIRFilter {
 	private double[] coefs;
+	private double[] state; 
 	/**
 	 * Creates FIR filter out of coefficients. 
 	 * Order of the filter is equal to the number of coefficients. 
@@ -15,6 +16,7 @@ public class FIRFilter {
 	 */
 	public FIRFilter(double[] coefs) {
 			this.coefs = coefs; 
+			this.state = new double[coefs.length];
 	}
 	/**
 	 * Process Filter function with integer input array. 
@@ -35,7 +37,6 @@ public class FIRFilter {
 	 */
 	public double[] process(double[] input) {
 		double[] output = new double[input.length];
-		double[] state = new double[coefs.length];
 		for(int n = 0; n < input.length; n++) {
 			state = this.shiftArray(state, input[n]); 
 			output[n] = this.matrixMultArray(state, coefs);
