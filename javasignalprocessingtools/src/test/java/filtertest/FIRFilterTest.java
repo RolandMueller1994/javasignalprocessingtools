@@ -56,6 +56,7 @@ public class FIRFilterTest {
 						writer.write(myString);
 					} catch (Exception e) {
 						e.printStackTrace();
+						
 					} finally {}
 				}
 			}
