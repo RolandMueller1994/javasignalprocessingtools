@@ -29,15 +29,15 @@ public class FIRFilterTest {
 		double[] coefs = new double[80]; 
 		int k = 0; 
 		double fg = 0.2; 
-		for(int n=0; n < coefs.length/2 - 1; n++) {
-			coefs[n] = (coefs.length-1)/2- n;
+		for(int n=0; n < coefs.length/2; n++) {
+			coefs[n] = -(coefs.length-1.0)/2.0 + n;
 		}
 		for(int n=coefs.length/2; n < coefs.length; n++) {
-			coefs[n] = n - ((coefs.length-1)/2);
+			coefs[n] = n - ((coefs.length-1)/2.0);
 		}
 		
 		for(int n = 0; n < coefs.length; n++) {	
-			coefs[n]= sinc(2*fg*coefs[n]);
+			coefs[n]= this.sinc((2.0*fg*coefs[n]));
 		}
 		
 		FIRFilter filter = new FIRFilter(coefs);
@@ -52,7 +52,7 @@ public class FIRFilterTest {
 				for (int n = 0; n < x.length; n++) {
 					String myString = "";
 					try {
-						myString = Double.toString(x[n]) + " " + Double.toString(y[n]) + " " + Double.toString(y_filterd[n])
+						myString = Double.toString(x[n]) + " " + Double.toString(y[n]) + " " + Double.toString(y_filterd[n] )
 								+ "\n";
 						writer.write(myString);
 					} catch (Exception e) {
@@ -71,7 +71,8 @@ public class FIRFilterTest {
 			return 1.0;
 		}
 		else {
-			return Math.sin(input)/input; 
+			double output = Math.sin(input)/input;
+			return  output; 
 		}
 	}
 }

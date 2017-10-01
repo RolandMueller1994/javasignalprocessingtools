@@ -6,7 +6,7 @@ y_conv = f_filter(y, Fg, nCoefs);
 
 
 tau = -(nCoefs-1)/2 : (nCoefs-1)/2;
-hlp = sinc(2*Fg*tau); %calculation of coefs
+hlp = sin(2*Fg*tau)./(2*Fg*tau); %calculation of coefs
 y_canon = f_filter_canon2( hlp, y); 
 
 %% Import data from text file.
@@ -58,8 +58,9 @@ yf_java = dataArray{:, 3};
 clearvars filename delimiter formatSpec fileID dataArray ans;
 subplot(3,1,1)
 plot(x, y)
-plot(x, y, x_java, y_java)
 subplot(3,1,2)
+plot(x, y, x_java, y_java)
+subplot(3,1,3)
 plot(x, y_canon, x_java, yf_java)
 
 
