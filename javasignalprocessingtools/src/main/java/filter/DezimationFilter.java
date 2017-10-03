@@ -11,8 +11,8 @@ public class DezimationFilter extends FIRFilter{
 	private int order; 
 	/**
 	 * Creates dezimation filter with order tabs and a FIR filter with the given FIRcoefs. 
-	 * @param order {@linkplain int}
-	 * @param FIRcoefs {@linkplain double[]}
+	 * @param order {@linkplain int} downsampling rate.
+	 * @param FIRcoefs {@linkplain double[]} coefizients for FIRFilter.
 	 */
 	public DezimationFilter(int order, double[] FIRcoefs) {
 		super(FIRcoefs);

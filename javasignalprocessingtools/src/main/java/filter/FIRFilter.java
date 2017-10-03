@@ -12,7 +12,7 @@ public class FIRFilter {
 	/**
 	 * Creates FIR filter out of coefficients. 
 	 * Order of the filter is equal to the number of coefficients. 
-	 * @param coefs of {@linkplain double[]}
+	 * @param coefs {@linkplain double[]} coefficients of FIRFilter.
 	 */
 	public FIRFilter(double[] coefs) {
 			this.coefs = coefs; 
