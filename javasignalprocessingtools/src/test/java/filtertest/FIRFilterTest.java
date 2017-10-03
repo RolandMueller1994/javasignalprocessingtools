@@ -27,7 +27,7 @@ public class FIRFilterTest {
 			y[n] = Math.sin(10*x[n]) + Math.sin(100*x[n]) + Math.sin(500*x[n]) + Math.sin(3000*x[n]); 
 		}
 		double[] coefs = new double[80]; 
-		double fg = 0.3; 
+		double fg = 0.5; 
 		for(int n=0; n < coefs.length/2; n++) {
 			coefs[n] = -(coefs.length-1.0)/2.0 + n;
 		}

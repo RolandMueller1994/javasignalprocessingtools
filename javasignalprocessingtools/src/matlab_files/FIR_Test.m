@@ -1,6 +1,6 @@
 x = 1:1000; 
 nCoefs = 80; 
-Fg = 0.3;
+Fg = 0.5;
 y = sin(10*x) + sin(100*x) + sin(500*x) + sin(3000*x); 
 y_conv = f_filter(y, Fg, nCoefs);
 
@@ -52,7 +52,7 @@ fclose(fileID);
 %% Allocate imported array to column variable names
 x_java = dataArray{:, 1};
 y_java = dataArray{:, 2};
-yf_java = dataArray{:, 3};
+%yf_java = dataArray{:, 3};
 
 
 %% Clear temporary variables
