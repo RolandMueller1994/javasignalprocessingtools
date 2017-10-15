@@ -18,60 +18,74 @@ import filter.FIRFilter;
  */
 public class EnvelopeDetectorFIR extends FIRFilter {
 	private double R1;
-	private double C1; 
-	private double integratorState = 0.0; 
+	private double C1;
+	private double integratorState = 0.0;
+
 	/**
 	 * Constructor of envelope detectore with internal FIRFilter.
-	 * @param coefs {@linkplain double}
-	 * @param R1 	{@linkplain double}
-	 * @param C1	{@linkplain double}
+	 * 
+	 * @param coefs
+	 *            {@linkplain double}
+	 * @param R1
+	 *            {@linkplain double}
+	 * @param C1
+	 *            {@linkplain double}
 	 */
 	public EnvelopeDetectorFIR(double[] coefs, double R1, double C1) {
 		super(coefs);
 		this.R1 = R1;
 		this.C1 = C1;
 	}
+
 	/**
-	 * Implements time discrete integrator
-	 * 		   1
-	 * STF = ------
-	 * 		 z - 1 
-	 * @param input {@linkplain double}
+	 * Implements time discrete integrator 
+	 * 			1 
+	 * STF = ------ 
+	 * 		  z - 1
+	 * 
+	 * @param input
+	 *            {@linkplain double}
 	 * @return {@linkplain double}
 	 */
 	private double integrator(double input) {
-		double output = integratorState; 
-		integratorState = integratorState + input; 
-		return output; 
+		double output = integratorState;
+		integratorState = integratorState + input;
+		return output;
 	}
+
 	/**
-	 * Returns the envelope curve of the input array. 
-	 * The output curve is internally filtered with FIRfilter.
-	 * @param input {@linkplain double[]}
+	 * Returns the envelope curve of the input array. The output curve is internally
+	 * filtered with FIRfilter.
+	 * 
+	 * @param input
+	 *            {@linkplain double[]}
 	 * @return {@linkplain double[]}
 	 */
 	public double[] processFiltered(double[] input) {
 		double[] output = new double[input.length];
-		//Detection of envelope curve
-		for(int n = 0; n<input.length; n++) {
-			output[n] = integrator(Math.abs(input[n]))*(1/(R1*C1));
+		// Detection of envelope curve
+		for (int n = 0; n < input.length; n++) {
+			output[n] = integrator(Math.abs(input[n])) * (1 / (R1 * C1));
 		}
-		//Filter of ripple on envelope curve 
+		// Filter of ripple on envelope curve
 		output = super.process(output);
-		return output; 
+		return output;
 	}
+
 	/**
-	 * Returns the envelope curve of the input array. 
-	 * @param input {@linkplain double[]}
+	 * Returns the envelope curve of the input array.
+	 * 
+	 * @param input
+	 *            {@linkplain double[]}
 	 * @return {@linkplain double[]}
 	 */
 	public double[] processUnfiltered(double[] input) {
 		double[] output = new double[input.length];
-		//Detection of envelope curve
-		for(int n = 0; n<input.length; n++) {
-			output[n] = integrator(Math.abs(input[n]))*(1/(R1*C1));
+		// Detection of envelope curve
+		for (int n = 0; n < input.length; n++) {
+			output[n] = integrator(Math.abs(input[n])) * (1 / (R1 * C1));
 		}
-		return output; 
+		return output;
 	}
 
 	public double getR1() {
@@ -93,7 +107,5 @@ public class EnvelopeDetectorFIR extends FIRFilter {
 	public void setIntegratorState(double integratorState) {
 		this.integratorState = integratorState;
 	}
-	
-	
 
 }
