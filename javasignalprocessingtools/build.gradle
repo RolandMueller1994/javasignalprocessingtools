@@ -41,7 +41,7 @@ dependencies {
     
     // https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
 	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-	compile group: 'com.github.RolandMueller1994', name: 'commonjavaframework', version: '02af78e801'
+	compile group: 'com.github.RolandMueller1994', name: 'commonjavaframework', version: 'master-SNAPSHOT'
 
 }
 
